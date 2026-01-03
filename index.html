@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Gourmet | Restaurante Sabores</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #e94560;
+            --gold: #ffd700;
+            --light: #f5f5f5;
+            --white: #ffffff;
+            --text: #333333;
+            --shadow-sm: 0 2px 10px rgba(0,0,0,0.1);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.12);
+            --shadow-lg: 0 15px 50px rgba(0,0,0,0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(233, 69, 96, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 30px 30px 0 0;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--gold) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--white);
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header .subtitle {
+            font-size: 1.3rem;
+            color: var(--gold);
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+        
+        /* Info Cards */
+        .info-section {
+            background: var(--white);
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .info-card {
+            background: linear-gradient(135deg, #f6f6f6 0%, #ffffff 100%);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--gold) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+        }
+        
+        .info-card:hover::before {
+            opacity: 1;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 15px 40px rgba(233, 69, 96, 0.3);
+        }
+        
+        .info-card > * {
+            position: relative;
+            z-index: 1;
+            transition: color 0.4s ease;
+        }
+        
+        .info-card:hover > * {
+            color: var(--white) !important;
+        }
+        
+        .info-card i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .info-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--text);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .info-card p {
+            color: #666;
+            font-size: 1rem;
+        }
+        
+        /* Menu Sections */
+        .menu-content {
+            background: var(--white);
+            padding: 60px 40px;
+        }
+        
+        .menu-section {
+            margin-bottom: 60px;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-header::before,
+        .section-header::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent));
+        }
+        
+        .section-header::before {
+            left: 0;
+        }
+        
+        .section-header::after {
+            right: 0;
+            background: linear-gradient(90deg, var(--accent), transparent);
+        }
+        
+        .section-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--gold) 100%);
+            border-radius: 50%;
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 15px;
+            box-shadow: 0 10px 25px rgba(233, 69, 96, 0.3);
+        }
+        
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .section-divider {
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--gold));
+            margin: 0 auto;
+        }
+        
+        /* Menu Items */
+        .menu-items {
+            display: grid;
+            gap: 25px;
+        }
+        
+        .menu-item {
+            background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: var(--shadow-sm);
+            border-left: 5px solid transparent;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent) 0%, var(--gold) 100%);
+            transform: scaleY(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .menu-item:hover::before {
+            transform: scaleY(1);
+        }
+        
+        .menu-item:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-md);
+            border-left-color: var(--gold);
+        }
+        
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            gap: 20px;
+        }
+        
+        .item-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: 700;
+            flex: 1;
+        }
+        
+        .item-price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            white-space: nowrap;
+        }
+        
+        .item-description {
+            color: #666;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        
+        .item-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .tag {
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        
+        .tag.allergen {
+            background: #fff3e0;
+            color: #e65100;
+            border: 2px solid #ffb74d;
+        }
+        
+        .tag.allergen:hover {
+            background: #e65100;
+            color: white;
+        }
+        
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 0 0 30px 30px;
+            padding: 50px 40px;
+            text-align: center;
+            color: var(--white);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent));
+        }
+        
+        .qr-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            display: inline-block;
+        }
+        
+        .qr-section i {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .qr-section p {
+            font-size: 1.1rem;
+            margin: 0;
+        }
+        
+        .footer-text {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 3rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .menu-content {
+                padding: 40px 20px;
+            }
+            
+            .info-section {
+                padding: 30px 20px;
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header::before,
+            .section-header::after {
+                width: 50px;
+            }
+            
+            .item-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .item-price {
+                align-self: flex-start;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 40px 20px;
+                border-radius: 20px 20px 0 0;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .footer {
+                border-radius: 0 0 20px 20px;
+                padding: 40px 20px;
+            }
+            
+            .menu-item {
+                padding: 25px;
+            }
+            
+            .item-name {
+                font-size: 1.6rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Animaciones de entrada */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .menu-item {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+        
+        .menu-item:nth-child(1) { animation-delay: 0.1s; }
+        .menu-item:nth-child(2) { animation-delay: 0.2s; }
+        .menu-item:nth-child(3) { animation-delay: 0.3s; }
+        .menu-item:nth-child(4) { animation-delay: 0.4s; }
+        .menu-item:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h1>Restaurante Sabores</h1>
+                <p class="subtitle">Menú de la Cena</p>
+            </div>
+        </div>
+        
+       
+        
+        <div class="menu-content">
+            <div class="menu-section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-pizza-slice"></i>
+                    </div>
+                    <h2 class="section-title">Entrantes</h2>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <h3 class="item-name">Wraps al fallo</h3>
+                             
+                        </div>
+                        <p class="item-description">Mini wraps de pollo con queso y guacamole</p>
+                        <div class="item-tags">
+                            <span class="tag allergen">GLUTEN</span>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <h3 class="item-name">Steak tartar First time</h3>
+                             
+                        </div>
+                        <p class="item-description">Steak tartar hecho con mis propias manos</p>
+                        <div class="item-tags">
+                            <span class="tag allergen">GLUTEN</span>
+                            <span class="tag allergen">LÁCTEOS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-ice-cream"></i>
+                    </div>
+                    <h2 class="section-title">Postre</h2>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <h3 class="item-name">Yogur natural</h3>
+                            
+                        </div>
+                        <p class="item-description">Yogur con frutos rojos y pistacho</p>
+                        <div class="item-tags">
+                            <span class="tag allergen">GLUTEN</span>
+                            <span class="tag allergen">LÁCTEOS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-wine-glass-alt"></i>
+                    </div>
+                    <h2 class="section-title">Bebidas</h2>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <h3 class="item-name">Agua</h3>
+                           
+                        </div>
+                        <p class="item-description">Agua para no perder la hidratación</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="qr-section">
+                <i class="fas fa-qrcode"></i>
+                <p>Escanea este código QR para acceder al menú en tu dispositivo</p>
+            </div>
+            <p class="footer-text">© 2024 Restaurante Sabores - Todos los derechos reservados</p>
+        </div>
+    </div>
+</body>
+</html>
