@@ -126,80 +126,6 @@
             text-transform: uppercase;
         }
         
-        /* Info Cards */
-        .info-section {
-            background: var(--white);
-            padding: 40px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            box-shadow: var(--shadow-md);
-        }
-        
-        .info-card {
-            background: linear-gradient(135deg, #f6f6f6 0%, #ffffff 100%);
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            border: 2px solid transparent;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .info-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--gold) 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: 0;
-        }
-        
-        .info-card:hover::before {
-            opacity: 1;
-        }
-        
-        .info-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--gold);
-            box-shadow: 0 15px 40px rgba(233, 69, 96, 0.3);
-        }
-        
-        .info-card > * {
-            position: relative;
-            z-index: 1;
-            transition: color 0.4s ease;
-        }
-        
-        .info-card:hover > * {
-            color: var(--white) !important;
-        }
-        
-        .info-card i {
-            font-size: 3rem;
-            color: var(--accent);
-            margin-bottom: 15px;
-            display: block;
-        }
-        
-        .info-card h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            color: var(--text);
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        
-        .info-card p {
-            color: #666;
-            font-size: 1rem;
-        }
-        
         /* Menu Sections */
         .menu-content {
             background: var(--white);
@@ -386,28 +312,6 @@
             background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent));
         }
         
-        .qr-section {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            display: inline-block;
-        }
-        
-        .qr-section i {
-            font-size: 3rem;
-            color: var(--gold);
-            margin-bottom: 15px;
-            display: block;
-        }
-        
-        .qr-section p {
-            font-size: 1.1rem;
-            margin: 0;
-        }
-        
         .footer-text {
             opacity: 0.8;
             font-size: 0.95rem;
@@ -425,11 +329,6 @@
             
             .menu-content {
                 padding: 40px 20px;
-            }
-            
-            .info-section {
-                padding: 30px 20px;
-                grid-template-columns: 1fr;
             }
             
             .section-header::before,
@@ -505,19 +404,21 @@
 </head>
 <body>
     <div class="container">
+        <!-- HEADER -->
         <div class="header">
             <div class="header-content">
                 <div class="logo">
                     <i class="fas fa-utensils"></i>
                 </div>
                 <h1>Menú de la cena</h1>
-               
             </div>
         </div>
         
- 
-     
-   <div class="menu-section">
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="menu-content">
+            
+            <!-- SECCIÓN ENTRANTES -->
+            <div class="menu-section">
                 <div class="section-header">
                     <div class="section-icon">
                         <i class="fas fa-plate-wheat"></i>
@@ -530,7 +431,6 @@
                     <div class="menu-item">
                         <div class="item-header">
                             <h3 class="item-name">Wraps al fallo</h3>
-                            
                         </div>
                         <p class="item-description">Mini wraps de pollo con queso y guacamole</p>
                         <div class="item-tags">
@@ -540,10 +440,10 @@
                     </div>
                 </div>
             </div>
-     
-
-                 
-                 <div class="menu-section">
+            <!-- FIN SECCIÓN ENTRANTES -->
+            
+            <!-- SECCIÓN PRINCIPAL -->
+            <div class="menu-section">
                 <div class="section-header">
                     <div class="section-icon">
                         <i class="fas fa-utensils"></i>
@@ -556,7 +456,6 @@
                     <div class="menu-item">
                         <div class="item-header">
                             <h3 class="item-name">Steak tartar First time</h3>
-                            
                         </div>
                         <p class="item-description">Steak tartar hecho con mis propias manos</p>
                         <div class="item-tags">
@@ -566,8 +465,9 @@
                     </div>
                 </div>
             </div>
-                         
+            <!-- FIN SECCIÓN PRINCIPAL -->
             
+            <!-- SECCIÓN POSTRE -->
             <div class="menu-section">
                 <div class="section-header">
                     <div class="section-icon">
@@ -581,7 +481,6 @@
                     <div class="menu-item">
                         <div class="item-header">
                             <h3 class="item-name">Yogur natural</h3>
-                            
                         </div>
                         <p class="item-description">Yogur con frutos rojos y pistacho</p>
                         <div class="item-tags">
@@ -591,8 +490,10 @@
                     </div>
                 </div>
             </div>
-
-                           <div class="menu-section">
+            <!-- FIN SECCIÓN POSTRE -->
+            
+            <!-- SECCIÓN PRECIO -->
+            <div class="menu-section">
                 <div class="section-header">
                     <div class="section-icon">
                         <i class="fas fa-heart"></i>
@@ -605,24 +506,25 @@
                     <div class="menu-item">
                         <div class="item-header">
                             <h3 class="item-name">Un beso de la mas guapa del mundo</h3>
-                            
                         </div>
-                         
                         <div class="item-tags">
-                           
+                            <!-- Etiquetas vacías -->
                         </div>
                     </div>
                 </div>
             </div>
-                         
+            <!-- FIN SECCIÓN PRECIO -->
             
-           <div class="footer">
-            <div class="qr-section">
-                <i class="fas fa-qrcode"></i>
-                <p>Un beso de la mas Guapa del Mundo</p>
-            </div>
-            <p class="footer-text">© 2024 Restaurante  - Todos los derechos reservados</p>
         </div>
+        <!-- FIN menu-content -->
+        
+        <!-- FOOTER -->
+        <div class="footer">
+            <p class="footer-text">© 2024 Restaurante - Todos los derechos reservados</p>
+        </div>
+        <!-- FIN footer -->
+        
     </div>
+    <!-- FIN container -->
 </body>
 </html>
